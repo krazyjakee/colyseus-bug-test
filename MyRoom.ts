@@ -10,8 +10,8 @@ export class MyRoom extends Room<MapState> {
     let counter = 0;
     this.timer = setInterval(() => {
       counter += 1;
-      if (!this.state.items[counter]) {
-        this.state.items[counter] = new ItemState(counter);
+      if (!this.state.items[`i${counter}`]) {
+        this.state.items[`i${counter}`] = new ItemState(counter);
       }
       if (counter > 4) {
         counter = 0;
@@ -23,7 +23,7 @@ export class MyRoom extends Room<MapState> {
 
   onMessage(client: Client, message: any) {
     if (message.id) {
-      delete this.state.items[message.id];
+      delete this.state.items[`i${message.id}`];
     }
   }
 
